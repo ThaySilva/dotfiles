@@ -121,4 +121,4 @@ if [ -e ~/.bash/internals ]; then
 fi
 
 # added by travis gem
-[ -f /home/sfinucan/.travis/travis.sh ] && source /home/sfinucan/.travis/travis.sh
+[ -f /home/$USER/.travis/travis.sh ] && source /home/$USER/.travis/travis.sh

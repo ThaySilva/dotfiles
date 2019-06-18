@@ -4,6 +4,7 @@ set showmatch         "show bracket matches
 set laststatus=2      "show two status lines
 set number            "enable line numbers
 set ruler             "show ruler at botto
+set rulerformat=%-14.(%l,%c%V%)\ %P
 set incsearch         "move pages as match found
 set hlsearch          "highlight search
 set ignorecase        " case insensitive search
@@ -13,6 +14,8 @@ set backspace=indent,eol,start       "make backspace work like most other progra
 set t_kb=
 set mouse=a           " enable selection of panes with the mouse
 set nofoldenable      " require manual folding
+set cursorline
+set wildmenu
 
 set splitbelow        " ensure vertical splits go below current pane
 set splitright        " ensure horizontal splits go to right of current pane
@@ -69,36 +72,6 @@ set timeoutlen=50
 
 " Enable automatic text width-setting
 filetype plugin indent on
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Key remappings
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-" Enable automatic paste mode
-" From https://coderwall.com/p/if9mda/
-function! WrapForTmux(s)
-  if !exists('$TMUX')
-    return a:s
-  endif
-
-  let tmux_start = "\<Esc>Ptmux;"
-  let tmux_end = "\<Esc>\\"
-
-  return tmux_start . substitute(a:s, "\<Esc>", "\<Esc>\<Esc>", 'g') . tmux_end
-endfunction
-
-let &t_SI .= WrapForTmux("\<Esc>[?2004h")
-let &t_EI .= WrapForTmux("\<Esc>[?2004l")
-
-function! XTermPasteBegin()
-  set pastetoggle=<Esc>[201~
-  set paste
-  return ""
-endfunction
-
-inoremap <special> <expr> <Esc>[200~ XTermPasteBegin()
-
-inoremap <S-Tab> <C-V><Tab>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Autocommands
@@ -191,3 +164,15 @@ let g:syntastic_auto_loc_list = 0
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 let g:syntastic_python_checkers = ['flake8']
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Tmux cursor mode
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" allows cursor change in tmux mode
+if exists('$TMUX')
+    let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
+    let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
+else
+    let &t_SI = "\<Esc>]50;CursorShape=1\x7"
+    let &t_EI = "\<Esc>]50;CursorShape=0\x7"
+endif

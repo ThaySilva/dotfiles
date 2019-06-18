@@ -3,7 +3,7 @@
 # create symlinks from the home directory to dotfiles in ~/dotfiles
 
 dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-dotfiles="vimrc vim inputrc bashrc bash next_review hgrc gitconfig gitignore tmux.conf"
+dotfiles="vimrc vim bashrc bash gitconfig gitignore tmux.conf"
 packages="vim"
 
 # ensure all required packages have been installed
@@ -39,15 +39,6 @@ for file in $dotfiles; do
     ln -s "$src" "$dst"
     echo "Created $dst"
 done
-
-# symlink configfiles to the home dir
-# TODO(stephenfin): Make this generic once we synchronize more config options
-src="$dir/config/sublime-text-3/Packages/User"
-out="$HOME/.config/sublime-text-3/Packages/"
-dst="$out/User"
-mkdir -p "$out"
-ln -s "$src" "$dst"
-echo "Created $dst"
 
 # set vim as default editor
 update-alternatives --set editor /usr/bin/vim.basic
