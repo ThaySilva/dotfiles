@@ -1,4 +1,4 @@
-# Stephen's Dotfiles
+# Thay's Dotfiles
 
 A collections of dotfiles, mostly for my own use.
 
@@ -22,3 +22,5 @@ Not much on offer here.
 
   This lets you store internal configuration, be that corporate proxy
   configuration or something else entirely
+
+#### Credits to Stephen - https://github.com/stephenfin/dotfiles
