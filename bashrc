@@ -97,10 +97,6 @@ linux|xterm*|rxvt*)
     #   source: https://stackoverflow.com/q/5268513
     export PROMPT_COMMAND='echo -ne "\033]0;${HOSTNAME%%.*}: ${PWD##*/}\007"'
     ;;
-screen*)
-    # tmux equivalent of the above
-    export PROMPT_COMMAND='echo -ne "\033k${HOSTNAME%%.*}: ${PWD##*/}\033\\" '
-    ;;
 *)
     ;;
 esac
@@ -122,3 +118,12 @@ fi
 
 # added by travis gem
 [ -f /home/$USER/.travis/travis.sh ] && source /home/$USER/.travis/travis.sh
+
+echo '  _____ _   _ ______ ____'
+echo ' |_   _| \ | |  ____/ __ \'
+echo '   | | |  \| | |__ | |  | |'
+echo '   | | | . ` |  __|| |  | |'
+echo '  _| |_| |\  | |   | |__| |'
+echo ' |_____|_| \_|_|    \____/'
+
+bash ~/.daily_update_ubuntu.sh

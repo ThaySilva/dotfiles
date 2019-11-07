@@ -52,3 +52,5 @@ echo
 if [[ $REPLY =~ ^[Yy]$ ]]; then
     exec bash
 fi
+
+cp $dir/daily_update_ubuntu.sh $HOME/.daily_update_ubuntu.sh
