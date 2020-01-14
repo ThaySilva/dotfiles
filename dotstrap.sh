@@ -46,11 +46,11 @@ update-alternatives --set editor /usr/bin/vim.basic
 # install vim plugins
 vim +PluginInstall +qall
 
+cp ${PWD}/bash/daily_update_ubuntu.sh $HOME/.daily_update_ubuntu.sh
+
 # (optional) reload environment
 read -p "Reload environment now? [y]es/[n]o " -n 1 -r
 echo
 if [[ $REPLY =~ ^[Yy]$ ]]; then
     exec bash
 fi
-
-cp $dir/daily_update_ubuntu.sh $HOME/.daily_update_ubuntu.sh
